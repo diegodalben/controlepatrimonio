@@ -30,7 +30,7 @@ namespace Patrimonio.Business.Services
             _bizRulesInsertFactory = bizRulesInsertFactory ?? throw new ArgumentNullException(nameof(bizRulesInsertFactory));
         }
 
-        public ResponseBag<NoContent> Create(EPatrimonio entity)
+        public ResponseBag<int> Create(EPatrimonio entity)
         {
             // Apply the validations rules to entity.
             var validations = _validationInsertFactory.Create();
@@ -39,7 +39,7 @@ namespace Patrimonio.Business.Services
                 var result = validation.Validate(entity);
                 if(!result.IsValid)
                 {
-                    return new ResponseBag<NoContent>
+                    return new ResponseBag<int>
                     {
                         Ok = false,
                         Message = string.Join(", ", result.Errors)
@@ -55,15 +55,23 @@ namespace Patrimonio.Business.Services
             }
 
             // Save the patrimônio in database.
-            _repository.Create(entity);
+            var affectedRows = _repository.Create(entity);
 
-            return new ResponseBag<NoContent>{Ok = true};
+            return new ResponseBag<int>
+            {
+                Ok = true,
+                ObjectResponse = affectedRows
+            };
         }
 
-        public ResponseBag<NoContent> Delete(long patrimonioId)
+        public ResponseBag<int> Delete(long patrimonioId)
         {
-            _repository.Delete(patrimonioId);
-            return new ResponseBag<NoContent>{Ok = true};
+            var affectedRows = _repository.Delete(patrimonioId);
+            return new ResponseBag<int>
+            {
+                Ok = true,
+                ObjectResponse = affectedRows
+            };
         }
 
         public ResponseBag<IEnumerable<EPatrimonio>> GetAll()
@@ -96,7 +104,7 @@ namespace Patrimonio.Business.Services
             };
         }
 
-        public ResponseBag<NoContent> Update(EPatrimonio entity)
+        public ResponseBag<int> Update(EPatrimonio entity)
         {
             // Apply the validations rules to entity.
             var validations = _validationUpdateFactory.Create();
@@ -105,7 +113,7 @@ namespace Patrimonio.Business.Services
                 var result = validation.Validate(entity);
                 if(!result.IsValid)
                 {
-                    return new ResponseBag<NoContent>
+                    return new ResponseBag<int>
                     {
                         Ok = false,
                         Message = string.Join(", ", result.Errors)
@@ -114,9 +122,13 @@ namespace Patrimonio.Business.Services
             }
 
             // Save the patrimônio in database.
-            _repository.Update(entity);
+            var affectedRows = _repository.Update(entity);
 
-            return new ResponseBag<NoContent>{Ok = true};
+            return new ResponseBag<int>
+            {
+                Ok = true,
+                ObjectResponse = affectedRows
+            };
         }
     }
 }

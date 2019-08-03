@@ -6,9 +6,9 @@ namespace Patrimonio.Business.Services.Abstractions
 {
     public interface IMarcaService
     {
-        ResponseBag<NoContent> Create(EMarca entity);
-        ResponseBag<NoContent> Update(EMarca entity);
-        ResponseBag<NoContent> Delete(int marcaId);
+        ResponseBag<int> Create(EMarca entity);
+        ResponseBag<int> Update(EMarca entity);
+        ResponseBag<int> Delete(int marcaId);
         ResponseBag<IEnumerable<EMarca>> GetAll();
         ResponseBag<EMarca> GetById(int marcaId);
     }

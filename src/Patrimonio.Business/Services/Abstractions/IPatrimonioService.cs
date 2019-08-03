@@ -6,9 +6,9 @@ namespace Patrimonio.Business.Services.Abstractions
 {
     public interface IPatrimonioService
     {
-        ResponseBag<NoContent> Create(EPatrimonio entity);
-        ResponseBag<NoContent> Update(EPatrimonio entity);
-        ResponseBag<NoContent> Delete(long patrimonioId);
+        ResponseBag<int> Create(EPatrimonio entity);
+        ResponseBag<int> Update(EPatrimonio entity);
+        ResponseBag<int> Delete(long patrimonioId);
         ResponseBag<IEnumerable<EPatrimonio>> GetAll();
         ResponseBag<EPatrimonio> GetById(long patrimonioId);
         ResponseBag<IEnumerable<EPatrimonio>> GetByMarca(int marcaId);

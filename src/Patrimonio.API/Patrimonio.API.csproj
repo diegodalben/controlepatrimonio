@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Patrimonio.Business\Patrimonio.Business.csproj" />
+    <ProjectReference Include="..\Patrimonio.IoC\Patrimonio.IoC.csproj" />
+  </ItemGroup>
+
 </Project>

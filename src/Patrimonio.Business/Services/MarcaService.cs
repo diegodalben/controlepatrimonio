@@ -26,7 +26,7 @@ namespace Patrimonio.Business.Services
             _validationUpdateFactory = validationUpdateFactory ?? throw new ArgumentNullException(nameof(validationUpdateFactory));
         }
 
-        public ResponseBag<NoContent> Create(EMarca entity)
+        public ResponseBag<int> Create(EMarca entity)
         {
             // Apply the validations rules to entity.
             var validations = _validationInsertFactory.Create();
@@ -35,7 +35,7 @@ namespace Patrimonio.Business.Services
                 var result = validation.Validate(entity);
                 if(!result.IsValid)
                 {
-                    return new ResponseBag<NoContent>
+                    return new ResponseBag<int>
                     {
                         Ok = false,
                         Message = string.Join(", ", result.Errors)
@@ -44,15 +44,23 @@ namespace Patrimonio.Business.Services
             }
 
             // Save the marca in database.
-            _repository.Create(entity);
+            var affectedRows = _repository.Create(entity);
 
-            return new ResponseBag<NoContent>{Ok = true};
+            return new ResponseBag<int>
+            {
+                Ok = true,
+                ObjectResponse = affectedRows
+            };
         }
 
-        public ResponseBag<NoContent> Delete(int marcaId)
+        public ResponseBag<int> Delete(int marcaId)
         {
-            _repository.Delete(marcaId);
-            return new ResponseBag<NoContent>{Ok = true};
+            var affectedRows = _repository.Delete(marcaId);
+            return new ResponseBag<int>
+            {
+                Ok = true,
+                ObjectResponse = affectedRows
+            };
         }
 
         public ResponseBag<IEnumerable<EMarca>> GetAll()
@@ -75,7 +83,7 @@ namespace Patrimonio.Business.Services
             };
         }
 
-        public ResponseBag<NoContent> Update(EMarca entity)
+        public ResponseBag<int> Update(EMarca entity)
         {
             // Apply the validations rules to entity.
             var validations = _validationUpdateFactory.Create();
@@ -84,7 +92,7 @@ namespace Patrimonio.Business.Services
                 var result = validation.Validate(entity);
                 if(!result.IsValid)
                 {
-                    return new ResponseBag<NoContent>
+                    return new ResponseBag<int>
                     {
                         Ok = false,
                         Message = string.Join(", ", result.Errors)
@@ -93,9 +101,13 @@ namespace Patrimonio.Business.Services
             }
 
             // Save the marca in database.
-            _repository.Update(entity);
+            var affectedRows = _repository.Update(entity);
 
-            return new ResponseBag<NoContent>{Ok = true};
+            return new ResponseBag<int>
+            {
+                Ok = true,
+                ObjectResponse = affectedRows
+            };
         }
     }
 }

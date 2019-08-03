@@ -18,7 +18,7 @@ namespace Patrimonio.DataAccess.AdoNet
             _connection = connection ?? throw new ArgumentNullException(nameof(connection));
         }
 
-        public void Create(EPatrimonio entity)
+        public int Create(EPatrimonio entity)
         {
             using(var command = _connection.CreateCommand())
             {
@@ -34,8 +34,10 @@ namespace Patrimonio.DataAccess.AdoNet
                 try
                 {
                     _connection.Open();
-                    command.ExecuteNonQuery();
+                    var affectedRows = command.ExecuteNonQuery();
                     entity.PatrimonioId = (int) command.Parameters["@PatrimonioId"];
+
+                    return affectedRows;
                 }
                 finally
                 {
@@ -44,7 +46,7 @@ namespace Patrimonio.DataAccess.AdoNet
             }
         }
 
-        public void Delete(object id)
+        public int Delete(object id)
         {
             using(var command = _connection.CreateCommand())
             {
@@ -56,7 +58,7 @@ namespace Patrimonio.DataAccess.AdoNet
                 try
                 {
                     _connection.Open();
-                    command.ExecuteNonQuery();
+                    return command.ExecuteNonQuery();
                 }
                 finally
                 {
@@ -176,7 +178,7 @@ namespace Patrimonio.DataAccess.AdoNet
             }
         }
 
-        public void Update(EPatrimonio entity)
+        public int Update(EPatrimonio entity)
         {
             using(var command = _connection.CreateCommand())
             {
@@ -191,7 +193,7 @@ namespace Patrimonio.DataAccess.AdoNet
                 try
                 {
                     _connection.Open();
-                    command.ExecuteNonQuery();
+                    return command.ExecuteNonQuery();
                 }
                 finally
                 {

@@ -4,9 +4,9 @@ namespace Patrimonio.Business.Repositories
 {
     public interface IRepositoryBase<TEntity>
     {
-        void Create(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(object id);
+        int Create(TEntity entity);
+        int Update(TEntity entity);
+        int Delete(object id);
         IEnumerable<TEntity> GetAll();
         TEntity GetById(object id);
     }
