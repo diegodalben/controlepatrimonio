@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patrimonio.API", "Patrimonio.API\Patrimonio.API.csproj", "{91836633-4545-47DE-BE34-D97254BE3B93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patrimonio.API", "src\Patrimonio.API\Patrimonio.API.csproj", "{91836633-4545-47DE-BE34-D97254BE3B93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patrimonio.Business", "Patrimonio.Business\Patrimonio.Business.csproj", "{BAA9AD9A-3EC5-42BB-806A-FA8AAA320E23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patrimonio.Business", "src\Patrimonio.Business\Patrimonio.Business.csproj", "{BAA9AD9A-3EC5-42BB-806A-FA8AAA320E23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patrimonio.DataAccess", "Patrimonio.DataAccess\Patrimonio.DataAccess.csproj", "{271EA925-EFA3-445B-9959-4E6F0B1E0519}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patrimonio.DataAccess", "src\Patrimonio.DataAccess\Patrimonio.DataAccess.csproj", "{271EA925-EFA3-445B-9959-4E6F0B1E0519}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patrimonio.IoC", "Patrimonio.IoC\Patrimonio.IoC.csproj", "{3F92922F-94B0-4A5A-BD3C-FBD8708FEE52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patrimonio.IoC", "src\Patrimonio.IoC\Patrimonio.IoC.csproj", "{3F92922F-94B0-4A5A-BD3C-FBD8708FEE52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
