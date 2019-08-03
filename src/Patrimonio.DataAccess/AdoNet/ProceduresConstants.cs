@@ -8,6 +8,7 @@ namespace Patrimonio.DataAccess.AdoNet
         public const string Prc_Marca_Delete = "dbo.[prc_Marca_Delete]";
         public const string Prc_Marca_GetAll = "dbo.[prc_Marca_GetAll]";
         public const string Prc_Marca_GetById = "dbo.[prc_Marca_GetById]";
+        public const string Prc_Marca_GetByName = "dbo.[prc_Marca_GetByName]";
 
         // Patrimônio
         public const string Prc_Patrimonio_Insert = "dbo.[prc_Patrimonio_Insert]";

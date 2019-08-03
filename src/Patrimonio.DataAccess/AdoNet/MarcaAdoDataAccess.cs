@@ -121,6 +121,36 @@ namespace Patrimonio.DataAccess.AdoNet
             }
         }
 
+        public EMarca GetByName(string nome)
+        {
+            using(var command = _connection.CreateCommand())
+            {
+                command.CommandText = ProceduresConstants.Prc_Marca_GetByName;
+                command.CommandType = CommandType.StoredProcedure;
+
+                AddParameter(command, "@Nome", nome, ParameterDirection.Input);
+
+                try
+                {
+                    _connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if(!reader.Read()) return null;
+                        
+                        return new EMarca
+                        {
+                            MarcaId = Convert.ToInt32(reader["MarcaId"]),
+                            Nome = reader["Nome"].ToString()
+                        };
+                    }
+                }
+                finally
+                {
+                    _connection.Close();
+                }
+            }
+        }
+
         public void Update(EMarca entity)
         {
             using(var command = _connection.CreateCommand())
