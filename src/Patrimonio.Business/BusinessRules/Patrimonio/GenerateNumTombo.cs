@@ -11,7 +11,7 @@ namespace Patrimonio.Business.BusinessRules.Patrimonio
         {
             var id = Guid.NewGuid();
             var sequence = String.Join("", Regex.Split(id.ToString(), @"[^\d]"));
-            entity.NumTombo = Convert.ToInt32($"{sequence:D9}");
+            entity.NumTombo = Convert.ToInt32(sequence.Substring(0, 9));
         }
     }
 }

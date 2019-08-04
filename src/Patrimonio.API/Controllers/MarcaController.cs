@@ -26,18 +26,21 @@ namespace Patrimonio.API.Controllers
         [ProducesResponseType((int) HttpStatusCode.Created)]
         public IActionResult Create([FromBody] EMarca entity)
         {
+            if(entity == null) entity = new EMarca();
             var response = _marcaService.Create(entity);
 
             if(!response.Ok) return BadRequest(new {Message = response.Message});
 
-            return CreatedAtRoute("api/v1/[controller]/{id}", entity);
+            return CreatedAtRoute("GetMarcaById", new{Id = entity.MarcaId}, entity);
         }
 
         [Route("{id}")]
         [HttpPut]
         [ProducesResponseType((int) HttpStatusCode.Accepted)]
-        public IActionResult Update([FromBody] EMarca entity)
+        public IActionResult Update([FromRoute] int id, [FromBody] EMarca entity)
         {
+            if(entity == null) entity = new EMarca();
+            entity.MarcaId = id;
             var response = _marcaService.Update(entity);
 
             if(!response.Ok) return BadRequest(new {Message = response.Message});
@@ -67,7 +70,7 @@ namespace Patrimonio.API.Controllers
             return Ok(response.ObjectResponse);
         }
 
-        [Route("{id}")]
+        [Route("{id}", Name="GetMarcaById")]
         [HttpGet]
         [ProducesResponseType((int) HttpStatusCode.OK)]
         public IActionResult GetById([FromRoute] int id)

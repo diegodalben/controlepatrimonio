@@ -20,18 +20,21 @@ namespace Patrimonio.API.Controllers
         [ProducesResponseType((int) HttpStatusCode.Created)]
         public IActionResult Create([FromBody] EPatrimonio entity)
         {
+            if(entity == null) entity = new EPatrimonio();
             var response = _service.Create(entity);
 
             if(!response.Ok) return BadRequest(new {Message = response.Message});
 
-            return CreatedAtRoute("api/v1/[controller]/{id}", entity);
+            return CreatedAtRoute("GetPatrimonioById", new {Id = entity.PatrimonioId}, entity);
         }
 
         [Route("{id}")]
         [HttpPut]
         [ProducesResponseType((int) HttpStatusCode.Accepted)]
-        public IActionResult Update([FromBody] EPatrimonio entity)
+        public IActionResult Update([FromRoute] long id, [FromBody] EPatrimonio entity)
         {
+            if(entity == null) entity = new EPatrimonio();
+            entity.PatrimonioId = id;
             var response = _service.Update(entity);
 
             if(!response.Ok) return BadRequest(new {Message = response.Message});
@@ -61,7 +64,7 @@ namespace Patrimonio.API.Controllers
             return Ok(response.ObjectResponse);
         }
 
-        [Route("{id}")]
+        [Route("{id}", Name="GetPatrimonioById")]
         [HttpGet]
         [ProducesResponseType((int) HttpStatusCode.OK)]
         public IActionResult GetById([FromRoute] int id)

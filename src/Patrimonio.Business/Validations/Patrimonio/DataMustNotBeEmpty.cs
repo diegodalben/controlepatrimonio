@@ -15,7 +15,7 @@ namespace Patrimonio.Business.Validations.Patrimonio
 
             RuleFor(e => e.Marca.MarcaId)
             .NotEmpty()
-            .WithMessage("Marca deve ser inforado.");
+            .WithMessage("Marca deve ser informado.");
         }
     }
 }

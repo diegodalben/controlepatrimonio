@@ -29,13 +29,13 @@ namespace Patrimonio.DataAccess.AdoNet
                 AddParameter(command, "@MarcaId", entity.Marca.MarcaId, ParameterDirection.Input);
                 AddParameter(command, "@Descricao", entity.Descricao, ParameterDirection.Input);
                 AddParameter(command, "@NumTombo", entity.NumTombo, ParameterDirection.Input);
-                AddParameter(command, "@PatrimonioId", entity.PatrimonioId, ParameterDirection.Output);
+                var paramPatrimonioId = AddParameter(command, "@PatrimonioId", entity.PatrimonioId, ParameterDirection.Output);
 
                 try
                 {
                     _connection.Open();
                     var affectedRows = command.ExecuteNonQuery();
-                    entity.PatrimonioId = (int) command.Parameters["@PatrimonioId"];
+                    entity.PatrimonioId = Convert.ToInt64(paramPatrimonioId.Value);
 
                     return affectedRows;
                 }
@@ -202,7 +202,7 @@ namespace Patrimonio.DataAccess.AdoNet
             }
         }
 
-        private void AddParameter
+        private IDbDataParameter AddParameter
         (
             IDbCommand command,
             string paramName,
@@ -215,6 +215,8 @@ namespace Patrimonio.DataAccess.AdoNet
             parameter.Value = paramValue;
             parameter.Direction = paramDirect;
             command.Parameters.Add(parameter);
+
+            return parameter;
         }
     }
 }

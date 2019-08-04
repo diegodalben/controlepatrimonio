@@ -21,7 +21,7 @@ namespace Patrimonio.Business.Validations.Marca
         private bool ExistsInDb(string nome)
         {
             var entity = _repository.GetByName(nome);
-            return entity != null;
+            return entity == null;
         }
     }
 }
