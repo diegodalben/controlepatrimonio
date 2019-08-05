@@ -8,6 +8,8 @@ Foi utilizado o ADO.Net puro para acesso a dados, possibilitando ganho de perfor
 
 Para a camada de regras de validações de negócio, foi utilizado a biblioteca [FluentValidation](https://fluentvalidation.net/), deixando as validações mais fluídas, de fácil entendimento e manutenção e a redução de "ifs" no código.
 
+Toda exceção ocorrida é capturada e tratada por uma camada global. É retornada uma mensagem genérica ao client e a exceção original é registrada em um arquivo de log (*"./src/Patrimonio.API/Log"*).
+
 ## Pré-Requisitos
 
 Para o real funcionamento da solução, é necessário um pré-requisito mínimo com as seguintes ferramentas e Frameworks:
